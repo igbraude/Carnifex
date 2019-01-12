@@ -14,6 +14,12 @@
 (ql:quickload "lispbuilder-sdl")
 ;;(load "ft_carnifex/usage.lsp")
 
+(defparameter *max_y* 5120)
+(defparameter *max_x* 2180)
+
+(defparameter *y* NIL)
+(defparameter *x* NIL)
+
 (defun main (argv)
 
 	;;; affichage des argument
@@ -32,6 +38,13 @@ optianal arguments:
 			(exit)
 		)
 	  )
+	(progn(setq *y* (parse-integer (second argv)))
+		(setq *x* (parse-integer (third argv))))
+	(if (or (< *y* 1) (< *x* 1) (> *x* *max_x*) (> *y* *max_y*))
+		(progn(format t "Look at the MAC Displays what are you trying to do ?~%")
+		(exit)
+		)
+	)
 ;	(if (> 5120 (nth 1 argv))
 	; (format t "Look for MAC Max width"))
 	;;; affichage des argument
